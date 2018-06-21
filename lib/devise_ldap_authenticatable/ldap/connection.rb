@@ -79,6 +79,7 @@ module Devise
         return false unless (@password.present? || @allow_unauthenticated_bind)
         @ldap.auth(dn, @password)
         @ldap.bind
+        valid_login? # see https://github.com/cschiewek/devise_ldap_authenticatable/issues/244
       end
 
       def authenticated?
